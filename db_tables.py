@@ -40,7 +40,7 @@ class Clothing_type(Base):
     __tablename__ = "clothing_type"
     id = Column(Integer, primary_key=True)
     name = Column("Pavadinimas", String)
-    clothing = relationship("Clothing", back_populates="clothing_type")
+    clothing = relationship("Clothing", back_populates="clothing_types")
     
     def __repr__(self):
         return f"({self.id}, {self.name})"
