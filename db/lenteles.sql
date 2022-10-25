@@ -1,0 +1,34 @@
+CREATE TABLE IF NOT EXISTS person(
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	name VARCHAR(50),
+	second_name VARCHAR(50),
+	personal_id VARCHAR(12),
+	phone VARCHAR(15)
+);
+
+CREATE TABLE IF NOT EXISTS status(
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	name VARCHAR(255)
+);
+
+CREATE TABLE IF NOT EXISTS clothing_type(
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	name VARCHAR(255)
+);
+
+CREATE TABLE IF NOT EXISTS clothing(
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	name VARCHAR(255),
+	size VARCHAR(30),
+	type_id INTEGER FOREIGN KEY(type_id) REFERENCES clothing_type(id)
+);
+
+CREATE TABLE IF NOT EXISTS supply_action(
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	status_id INTEGER FOREIGN KEY(status_id) REFERENCES status(id),
+	person_id INTEGER FOREIGN KEY(person_id) REFERENCES person(id),
+	helmet_id INTEGER FOREIGN KEY(helmet_id) REFERENCES clothing(id),
+	jacket_id INTEGER FOREIGN KEY(jacket_id) REFERENCES clothing(id),
+	panties_id INTEGER FOREIGN KEY(panties_id) REFERENCES clothing(id),
+	shoes_id INTEGER FOREIGN KEY(shoes_id) REFERENCES clothing(id)
+);
