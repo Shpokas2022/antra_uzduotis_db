@@ -26,17 +26,23 @@ CREATE TABLE IF NOT EXISTS clothing (
 	id integer PRIMARY KEY AUTOINCREMENT,
 	name VARCHAR(255),
 	size VARCHAR(30),
-	type_id integer FOREIGN KEY (type_id) REFERENCES cothing_type(id)
+	type_id integer, FOREIGN KEY (type_id) REFERENCES cothing_type(id)
 );
 
 CREATE TABLE IF NOT EXISTS supply_action (
 	id integer PRIMARY KEY AUTOINCREMENT,
-	status_id integer FOREIGN KEY(status_id) REFERENCES status(id),
-	person_id integer FOREIGN KEY(person_id) REFERENCES person(id),
-	helmet_id integer FOREIGN KEY(helmet_id) REFERENCES clothing(id),
-	jacket_id integer FOREIGN KEY(jacket_id) REFERENCES clothing(id),
-	panties_id integer FOREIGN KEY(panties_id) REFERENCES clothing(id),
-	shoes_id integer FOREIGN KEY(shoes_id) REFERENCES clothing(id) 
+	status_id integer, 
+	person_id integer, 
+	helmet_id integer, 
+	jacket_id integer, 
+	panties_id integer, 
+	shoes_id integer,
+    FOREIGN KEY(status_id) REFERENCES status(id),
+    FOREIGN KEY(person_id) REFERENCES person(id),
+    FOREIGN KEY(helmet_id) REFERENCES clothing(id),
+    FOREIGN KEY(jacket_id) REFERENCES clothing(id),
+    FOREIGN KEY(panties_id) REFERENCES clothing(id),
+    FOREIGN KEY(shoes_id) REFERENCES clothing(id)
 );
 '''
 cursor.execute(query)
