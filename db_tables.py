@@ -16,6 +16,7 @@ class Supply_action(Base):
     shoes_id = Column("shoes_id", Integer, ForeignKey("clothing.id"))
     
     person = relationship("Person", back_populates="supply_action")
+    # person = relationship("Person", foreign_keys=[person_id])
     clothing = relationship("Clothing", back_populates="supply_action")
     status = relationship("Status", back_populates="supply_actions")
 
@@ -29,8 +30,8 @@ class Clothing(Base):
     name = Column("Pavadinimas", String)
     size = Column("Dydis", String)
     type_id = Column("type_id", Integer, ForeignKey("clothing_type.id"))
-    clothing_types = relationship("Clothing_action", back_populates="clothing")
-    # supply_actions = relationship("Supply_action", back_populates="clothings")
+    clothing_types = relationship("Clothing_type", back_populates="clothing")
+    supply_actions = relationship("Supply_action", back_populates="clothing")
 
     def __repr__(self):
         return f"({self.id}, {self.name}, {self.size})"
@@ -39,7 +40,7 @@ class Clothing_type(Base):
     __tablename__ = "clothing_type"
     id = Column(Integer, primary_key=True)
     name = Column("Pavadinimas", String)
-    clothing_types = relationship("Clothing", back_populates="clothing_type")
+    clothing = relationship("Clothing", back_populates="clothing_type")
     
     def __repr__(self):
         return f"({self.id}, {self.name})"
@@ -62,7 +63,7 @@ class Person(Base):
     phone = Column("Telefonas", String)
     e_mail = Column("El.paštas", String)
 
-    supply_action = relationship("Person", back_populates="person")
+    supply_action = relationship("Supply_action", back_populates="person")
 
     def __repr__(self):
         return f"({self.id}, {self.f_name}, {self.s_name}, {self.personal_id}, {self.phone}, {self.e_mail})"
